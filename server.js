@@ -11,11 +11,13 @@ app.use(express.json())
 app.use(bodyParser.json());
 
 const ComponentRoute = require("./Routes/ComponentRoutes")
+const UserRoute = require("./Routes/userRoute")
 
 app.get("/api/", (req, res) => {
-    res.send("welcome to solar project")
+    res.send("welcome to ProMech")
 })
 app.use("/api/component", ComponentRoute)
+app.use("/api/user", UserRoute)
 
 
 app.listen(process.env.PORT, () => {
