@@ -10,12 +10,12 @@ app.use(cors())
 app.use(express.json())
 app.use(bodyParser.json());
 
-const SliderRoute = require("./Routes/SliderRoutes")
+const ComponentRoute = require("./Routes/ComponentRoutes")
 
 app.get("/api/", (req, res) => {
     res.send("welcome to solar project")
 })
-app.use("/api/slider", SliderRoute)
+app.use("/api/component", ComponentRoute)
 
 
 app.listen(process.env.PORT, () => {
