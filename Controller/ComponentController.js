@@ -55,3 +55,44 @@ exports.FindComponent = async (req, res) => {
         })
     }
 }
+
+
+
+exports.EditHeaderComponent = async (req, res) => {
+    try {
+        const id = req.params.id
+        const { listItem } = req.body
+        var GetComponent = await Components.findOne({
+            _id: id
+        })
+        const logo = GetComponent.data.logo
+        const data = {
+            logo: logo,
+            listItem: listItem
+        }
+        var HeaderComponent = await Components.findOneAndUpdate({ _id: id }, { $set: { data: data } })
+        if (HeaderComponent) {
+            res.send({ msg: "updated" })
+        }
+    }
+    catch (error) {
+        res.send({ msg: "error" })
+    }
+}
+exports.EditHomeComponent = async (req, res) => {
+    try {
+        const id = req.params.id
+        const { title,paragraph } = req.body
+        const data = {
+            title: title,
+            paragraph: paragraph
+        }
+        var HomeComponent = await Components.findOneAndUpdate({ _id: id }, { $set: { data: data } })
+        if (HomeComponent) {
+            res.send({ msg: "updated" })
+        }
+    }
+    catch (error) {
+        res.send({ msg: "error" })
+    }
+}
